@@ -1,4 +1,4 @@
-package team_11h56m.letsdigin;
+package team_11h56m.letsdigin.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
