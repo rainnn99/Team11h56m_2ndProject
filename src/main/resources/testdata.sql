@@ -1,0 +1,1 @@
+-- insert into member(userid, pw, roles) values ('nahwasa', '1234', 'ADMIN');
