@@ -18,11 +18,9 @@ public class Member {
 
     private String phone;
 
-
-
     private int coupon;
 
-    private Member(String name, String userid, String pw, String phone, int coupon) {
+    public Member(String name, String userid, String pw, String phone, int coupon) {
         this.name = name;
         this.userid = userid;
         this.pw = pw;
@@ -30,11 +28,7 @@ public class Member {
         this.coupon =coupon;
     }
 
-    protected Member() {}
-
-    public static Member createUser(String name, String userId, String pw, PasswordEncoder passwordEncoder, String phone, int coupon) {
-        return new Member(name, userId, passwordEncoder.encode(pw), phone, coupon);
-    }
+    public Member() {}
 
     public String getName() {
         return name;

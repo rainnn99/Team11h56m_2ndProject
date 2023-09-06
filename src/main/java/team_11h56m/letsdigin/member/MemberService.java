@@ -1,15 +1,14 @@
 package team_11h56m.letsdigin.member;
 
-import team_11h56m.letsdigin.dto.UserDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import team_11h56m.letsdigin.dao.MemberRepository;
+import team_11h56m.letsdigin.dto.MemberDTO;
 
 import java.util.Optional;
 
 public interface MemberService {
-    Member signupUser(Member member);
 
-    Member signupUser(UserDTO userDTO);
-
-    Member getLoggedUser();
+    String signUp(MemberDTO memberDTO);
     Member getCoupon();
     Member receiveCoupon();
 

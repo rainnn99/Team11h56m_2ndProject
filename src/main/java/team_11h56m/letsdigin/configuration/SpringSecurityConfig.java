@@ -21,7 +21,8 @@ public class SpringSecurityConfig {
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
                     config.addAllowedOrigin("http://localhost:3000");
-                    config.addAllowedMethod("*");
+                    config.addAllowedMethod("GET");
+                    config.addAllowedMethod("POST");
                     return config;
                 }))
                 .authorizeHttpRequests(request -> request

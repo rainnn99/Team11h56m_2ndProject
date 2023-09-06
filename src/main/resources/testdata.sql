@@ -1,1 +1,1 @@
--- insert into member(userid, pw, roles) values ('nahwasa', '1234', 'ADMIN');
+-- insert into member(id, password, name, phone_number, coupon, roles) values ('test1', '1111', '테스트1', '01000000000', '0', 'USER');
