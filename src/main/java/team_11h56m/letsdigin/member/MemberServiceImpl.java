@@ -48,13 +48,35 @@ public class MemberServiceImpl implements MemberService {
         }
     }
     @Override
-    public Member getCoupon() {
-        return null;
+    public int getCouponCount(String userId) {
+        System.out.println("call getcoupon() userId : " + userId);
+        Optional<Member> optionalMember = memberRepository.findByUserid(userId);
+
+        if (optionalMember.isPresent()) {
+            // 사용자 정보가 존재하면 쿠폰 수를 반환
+            Member member = optionalMember.get();
+            return member.getCoupon();
+        } else {
+            // 사용자 정보가 없으면 0을 반환
+            return 0;
+        }
     }
 
     @Override
-    public Member receiveCoupon() {
-        return null;
+    public int receiveCoupon(String userId) {
+        // userId를 이용하여 Member 테이블에서 해당 사용자의 정보를 조회
+        Optional<Member> optionalMember = memberRepository.findByUserid(userId);
+
+        if (optionalMember.isPresent()) {
+            // 사용자 정보가 존재하면 쿠폰 수를 +1 증가시키고 저장
+            Member member = optionalMember.get();
+            member.setCoupon(member.getCoupon() + 1);
+            memberRepository.save(member);
+            return member.getCoupon();
+        } else {
+            // 사용자 정보가 없으면 0을 반환
+            return 0;
+        }
     }
 
     public Optional<Member> findOne(String userId) {

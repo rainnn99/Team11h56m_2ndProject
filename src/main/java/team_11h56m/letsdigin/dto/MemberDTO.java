@@ -40,11 +40,15 @@ public class MemberDTO {
         this.phone = phone;
     }
 
-    public int getCoupon() {
-        return coupon;
-    }
-
     public void setCoupon(int coupon) {
         this.coupon = coupon;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

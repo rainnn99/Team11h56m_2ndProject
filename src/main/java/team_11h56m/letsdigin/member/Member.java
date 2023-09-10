@@ -25,7 +25,7 @@ public class Member {
         this.userid = userid;
         this.pw = pw;
         this.phone = phone;
-        this.coupon =coupon;
+        this.coupon = coupon;
     }
 
     public Member() {}
@@ -48,5 +48,9 @@ public class Member {
 
     public int getCoupon() {
         return coupon;
+    }
+
+    public void setCoupon(int coupon) {
+        this.coupon = coupon;
     }
 }
