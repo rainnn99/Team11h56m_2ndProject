@@ -12,5 +12,5 @@ public interface MemberService {
     int getCouponCount(String userId);
     int receiveCoupon(String userId);
 
-    Optional<Member> findOne(String UserId);
+    Optional<Member> findByMemberId(String memberId);
 }

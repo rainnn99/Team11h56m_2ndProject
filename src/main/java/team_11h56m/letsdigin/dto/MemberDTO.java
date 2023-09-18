@@ -2,7 +2,7 @@ package team_11h56m.letsdigin.dto;
 
 public class MemberDTO {
     private String name;
-    private String id;
+    private String memberId;
     private String password;
     private String phone;
     private int coupon;
@@ -16,12 +16,12 @@ public class MemberDTO {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public String getMemberId() {
+        return memberId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
     public String getPassword() {

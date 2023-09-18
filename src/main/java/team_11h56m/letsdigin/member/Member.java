@@ -12,7 +12,7 @@ public class Member {
 
     @Id
     @Column(unique = true)
-    private String userid;
+    private String memberId;
 
     private String pw;
 
@@ -20,9 +20,9 @@ public class Member {
 
     private int coupon;
 
-    public Member(String name, String userid, String pw, String phone, int coupon) {
+    public Member(String name, String memberId, String pw, String phone, int coupon) {
         this.name = name;
-        this.userid = userid;
+        this.memberId = memberId;
         this.pw = pw;
         this.phone = phone;
         this.coupon = coupon;
@@ -34,8 +34,8 @@ public class Member {
         return name;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getMemberId() {
+        return memberId;
     }
 
     public String getPw() {

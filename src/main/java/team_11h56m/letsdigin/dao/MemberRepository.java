@@ -6,5 +6,5 @@ import team_11h56m.letsdigin.member.Member;
 import java.util.Optional;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
-    Optional<Member> findByUserid(String userId);
+    Optional<Member> findByMemberId(String memberId);
 }
