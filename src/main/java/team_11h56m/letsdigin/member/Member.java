@@ -14,16 +14,16 @@ public class Member {
     @Column(unique = true)
     private String memberId;
 
-    private String pw;
+    private String password;
 
     private String phone;
 
     private int coupon;
 
-    public Member(String name, String memberId, String pw, String phone, int coupon) {
+    public Member(String name, String memberId, String password, String phone, int coupon) {
         this.name = name;
         this.memberId = memberId;
-        this.pw = pw;
+        this.password = password;
         this.phone = phone;
         this.coupon = coupon;
     }
@@ -38,8 +38,8 @@ public class Member {
         return memberId;
     }
 
-    public String getPw() {
-        return pw;
+    public String getPassword() {
+        return password;
     }
 
     public String getPhone() {

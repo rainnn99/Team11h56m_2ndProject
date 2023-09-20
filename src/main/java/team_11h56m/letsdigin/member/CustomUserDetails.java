@@ -11,9 +11,9 @@ public class CustomUserDetails extends User {
     private String phone;
     private int coupon;
 
-    public CustomUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities,
+    public CustomUserDetails(String memberId, String password, Collection<? extends GrantedAuthority> authorities,
                              String name, String phone, int coupon) {
-        super(username, password, authorities);
+        super(memberId, password, authorities);
         this.name = name;
         this.phone = phone;
         this.coupon = coupon;

@@ -1,6 +1,7 @@
 package team_11h56m.letsdigin.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,7 +30,8 @@ public class MemberController {
         if ("T".equals(result)) {
             return ResponseEntity.ok("회원가입 성공");
         } else {
-            return ResponseEntity.ok("회원가입 실패");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("회원 가입 실패");
         }
     }
 
@@ -59,5 +61,10 @@ public class MemberController {
 
         // 쿠폰을 받은 후의 사용자의 쿠폰 수를 클라이언트에 반환\
         return ResponseEntity.ok(updatedCouponCount);
+    }
+
+    @GetMapping("/check")
+    public ResponseEntity<String> logincheck(){
+        return ResponseEntity.ok("success");
     }
 }

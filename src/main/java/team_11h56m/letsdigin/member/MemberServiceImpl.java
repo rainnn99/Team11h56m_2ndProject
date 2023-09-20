@@ -80,7 +80,7 @@ public class MemberServiceImpl implements MemberService {
             return 0;
         }
     }
-
+    @Override
     public Optional<Member> findByMemberId(String memberId) {
         return memberRepository.findByMemberId(memberId);
     }
