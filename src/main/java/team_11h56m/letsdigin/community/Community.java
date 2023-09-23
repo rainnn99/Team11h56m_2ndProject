@@ -3,6 +3,7 @@ package team_11h56m.letsdigin.community;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "community")
 public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

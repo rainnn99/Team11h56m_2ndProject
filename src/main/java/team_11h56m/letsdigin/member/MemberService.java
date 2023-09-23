@@ -8,9 +8,11 @@ import java.util.Optional;
 
 public interface MemberService {
 
+    String getLoggedMemberId();
+
     String signUp(MemberDTO memberDTO);
     int getCouponCount(String userId);
     int receiveCoupon(String userId);
 
-    Optional<Member> findByMemberId(String memberId);
+    Member findByMemberId(String memberId);
 }
