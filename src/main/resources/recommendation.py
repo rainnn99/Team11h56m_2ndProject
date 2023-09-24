@@ -8,20 +8,15 @@ import mariadb
 
 
 mydb = mariadb.connect(
-    host="",
-    user="",
-    password="",  # 비밀번호 넣기
-    port=
+    host="localhost",
+    user="root",
+    password="root",  # 비밀번호 넣기
+    port=3307
 )
 
 mycursor = mydb.cursor()
 
-mycursor.execute("USE ")    #데베이름 넣기
-
-
-
-
-
+mycursor.execute("USE 11h56m")    #데베이름 넣기
 
 food_data = pd.read_csv('src/main/resources/food.csv')
 
@@ -30,7 +25,7 @@ plethora = []
 
 #싫어하는 음식을 추천하지 않기위해 데이터 받아오기
 def get_dislike_food(userid):
-    query = f"SELECT food_small_scale_classification FROM dislike_food WHERE customer_id = '{userid}'"
+    query = f"SELECT food_small_scale_classification FROM dislike_food WHERE member_id = '{userid}'"
     mycursor.execute(query)
     dislike_food = mycursor.fetchall()
     convert_data = [item[0] for item in dislike_food]
@@ -39,7 +34,7 @@ def get_dislike_food(userid):
 #mysql의 testdb의 calender table에서 user_id collum을 확인하여 최근 50개를 가져와 user_taken_food 변수에 저장하는 코드
 
 def get_taken_food(userid):
-    query = f"SELECT taken_food FROM calendar WHERE user_id = '{userid}' ORDER BY day DESC LIMIT 50"
+    query = f"SELECT breakfast, lunch, dinner FROM calendar WHERE member_id = '{userid}' ORDER BY date DESC LIMIT 30"
     mycursor.execute(query)
     taken_food = mycursor.fetchall()
     return taken_food
@@ -48,30 +43,30 @@ def get_taken_food(userid):
 def get_taken_food_nutr(taken_food):
     matched_rows = food_data[food_data['food_small_scale_classification'].isin([x[0] for x in taken_food])].values.tolist()
 
-#영양정보만 남겨 활용하기 위해 앞의 food_no~food_small_scale_classifiction까지 절삭
-#알고리즘만 구현하기위해 일단 serving_size까지 절삭 했으나 추후 servingsize를 계산에 추가하여 대략적인 섭취량 계산 가능하도록 코드추가
+    #영양정보만 남겨 활용하기 위해 앞의 food_no~food_small_scale_classifiction까지 절삭
+    #알고리즘만 구현하기위해 일단 serving_size까지 절삭 했으나 추후 servingsize를 계산에 추가하여 대략적인 섭취량 계산 가능하도록 코드추가
     matched_rows_modified = [row[5:] for row in matched_rows]
     return matched_rows_modified
 
 def get_nut(matched_rows_modified):
-#대략적인 섭취 영양 계산
+    #대략적인 섭취 영양 계산
     take_nut_sums = np.sum(matched_rows_modified, axis=0)
     take_nut_sums = take_nut_sums.reshape(1, -1)
 
-#칼로리, 나트륨 섭취량 분리 후 배열 절삭
+    #칼로리, 나트륨 섭취량 분리 후 배열 절삭
     take_nut_sums = take_nut_sums[0]
     calories = take_nut_sums[0]
     salt = take_nut_sums[4]
     take_nut_sums = take_nut_sums[1:4]
 
-#영양소에 기반한 추천을 하기위한 섭취 영양 비율 계산(가장 많이 섭취된 영양기준 부족한 정도)
-#기준 : 보건복지부 권장 섭취 에너지 비율(탄:55-65%, 단:7-20%, 지:15-30)
-#단 계산의 편의를 위해 탄단지의 비율을 60:15:25로 계산
+    #영양소에 기반한 추천을 하기위한 섭취 영양 비율 계산(가장 많이 섭취된 영양기준 부족한 정도)
+    #기준 : 보건복지부 권장 섭취 에너지 비율(탄:55-65%, 단:7-20%, 지:15-30)
+    #단 계산의 편의를 위해 탄단지의 비율을 60:15:25로 계산
     target_ratios = np.array([15, 25, 60])
     take_nut_ratio = take_nut_sums / np.sum(take_nut_sums) * 100
     lack_ratio = target_ratios - take_nut_ratio
 
-#부족한 영양 정보 제공을 위한 값 확인 함수(비율기준 음수이면 특정영양이 다른 영양보다 많이 섭취되었다는 뜻이므로)
+    #부족한 영양 정보 제공을 위한 값 확인 함수(비율기준 음수이면 특정영양이 다른 영양보다 많이 섭취되었다는 뜻이므로)
     for index, value in enumerate(lack_ratio):
         if value > 0:
             plethora.append(index)
@@ -146,8 +141,9 @@ def main(argv):
 
     user_id = argv[1]
     result = run_recommendation(user_id)
-    print(result)
 
+    #return result
+    print(result)
 
 if __name__ == "__main__":
     main(sys.argv)

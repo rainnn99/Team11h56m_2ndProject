@@ -14,6 +14,8 @@ public class Calendar {
 
     private String lunch;
 
+    private String dinner;
+
     public String getBreakfast() {
         return breakfast;
     }
@@ -42,7 +44,7 @@ public class Calendar {
         this.dinner = dinner;
     }
 
-    private String dinner;
+
 
     public Calendar(){}
 

@@ -1,7 +1,6 @@
 package team_11h56m.letsdigin.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import team_11h56m.letsdigin.dao.MemberRepository;

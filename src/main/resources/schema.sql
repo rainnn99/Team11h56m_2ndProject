@@ -24,7 +24,6 @@ CREATE TABLE customer (
     name VARCHAR(20),
     phone_number VARCHAR(20),
     coupon INT DEFAULT 0,
-    roles VARCHAR(10) DEFAULT USER,
     PRIMARY KEY (id)
 );
 

@@ -1,5 +1,7 @@
 package team_11h56m.letsdigin.calendar;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
@@ -7,6 +9,7 @@ import java.time.LocalDate;
 
 @Embeddable
 public class CalendarPK implements Serializable {
+
     private String memberId;
 
     private LocalDate date;

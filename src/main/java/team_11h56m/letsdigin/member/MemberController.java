@@ -7,10 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import team_11h56m.letsdigin.dao.MemberRepository;
 import team_11h56m.letsdigin.dto.MemberDTO;
 
-@Controller
+@RestController
 public class MemberController {
     @Autowired
     private MemberService memberService;

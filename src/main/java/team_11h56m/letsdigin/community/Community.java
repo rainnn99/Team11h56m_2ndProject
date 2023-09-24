@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "community")
 public class Community {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "community_seq")
+    @SequenceGenerator(name = "community_seq", sequenceName = "community_seq", allocationSize = 1)
     private int serialNumber;
 
     private String memberId;
